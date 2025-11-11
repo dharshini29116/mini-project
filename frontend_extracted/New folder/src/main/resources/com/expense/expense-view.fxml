@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.expense.controller.ExpenseController">
+   <top>
+      <VBox styleClass="header-box" spacing="10">
+         <padding>
+            <Insets top="25" bottom="25" left="30" right="30" />
+         </padding>
+         <HBox spacing="20" alignment="CENTER_LEFT">
+            <Text text="💰" styleClass="header-emoji" />
+            <VBox spacing="5">
+               <Text text="Expense Categorization System" styleClass="header-title" />
+               <Text text="Manage and track your expenses efficiently" styleClass="header-subtitle" />
+            </VBox>
+         </HBox>
+      </VBox>
+   </top>
+   
+   <center>
+      <SplitPane dividerPositions="0.4" styleClass="main-split-pane">
+         <!-- Left Panel: Expense Entry Form -->
+         <VBox spacing="20" styleClass="form-panel">
+            <padding>
+               <Insets top="30" bottom="30" left="30" right="30" />
+            </padding>
+            
+            <Text text="Add/Edit Expense" styleClass="panel-title" />
+            
+            <VBox spacing="15">
+               <VBox spacing="5">
+                  <Label text="Description *" styleClass="form-label" />
+                  <TextField fx:id="descriptionField" promptText="Enter expense description" styleClass="form-text-field" />
+               </VBox>
+               
+               <HBox spacing="15">
+                  <VBox spacing="5" HBox.hgrow="ALWAYS">
+                     <Label text="Amount ($) *" styleClass="form-label" />
+                     <TextField fx:id="amountField" promptText="0.00" styleClass="form-text-field" />
+                  </VBox>
+                  
+                  <VBox spacing="5" HBox.hgrow="ALWAYS">
+                     <Label text="Category *" styleClass="form-label" />
+                     <ComboBox fx:id="categoryComboBox" promptText="Select category" styleClass="form-combo-box" />
+                  </VBox>
+               </HBox>
+               
+               <VBox spacing="5">
+                  <Label text="Date *" styleClass="form-label" />
+                  <DatePicker fx:id="datePicker" styleClass="form-date-picker" />
+               </VBox>
+               
+               <VBox spacing="5">
+                  <Label text="Notes" styleClass="form-label" />
+                  <TextArea fx:id="notesArea" promptText="Additional notes (optional)" styleClass="form-text-area" wrapText="true" />
+               </VBox>
+            </VBox>
+            
+            <VBox spacing="10" styleClass="button-container">
+               <Button fx:id="addButton" text="➕ Add Expense" onAction="#handleAddExpense" styleClass="btn-primary" maxWidth="Infinity" />
+               <Button fx:id="updateButton" text="✏️ Update Expense" onAction="#handleUpdateExpense" styleClass="btn-secondary" maxWidth="Infinity" />
+               <Button fx:id="deleteButton" text="🗑️ Delete Expense" onAction="#handleDeleteExpense" styleClass="btn-danger" maxWidth="Infinity" />
+               <Button fx:id="clearButton" text="🔄 Clear Form" onAction="#handleClearForm" styleClass="btn-clear" maxWidth="Infinity" />
+            </VBox>
+         </VBox>
+         
+         <!-- Right Panel: Expense List and Statistics -->
+         <VBox spacing="20" styleClass="list-panel">
+            <padding>
+               <Insets top="30" bottom="30" left="30" right="30" />
+            </padding>
+            
+            <Text text="Expense List & Statistics" styleClass="panel-title" />
+            
+            <!-- Search and Filter Section -->
+            <HBox spacing="15" alignment="CENTER_LEFT">
+               <VBox spacing="5" HBox.hgrow="ALWAYS">
+                  <Label text="Search" styleClass="form-label" />
+                  <TextField fx:id="searchField" promptText="Search expenses..." styleClass="search-field" />
+               </VBox>
+               
+               <VBox spacing="5" prefWidth="200">
+                  <Label text="Filter by Category" styleClass="form-label" />
+                  <ComboBox fx:id="filterCategoryComboBox" styleClass="form-combo-box" />
+               </VBox>
+            </HBox>
+            
+            <!-- Statistics Section -->
+            <VBox spacing="10" styleClass="statistics-box" fx:id="statisticsBox">
+               <Text fx:id="totalExpensesText" styleClass="statistics-text" />
+               <Text fx:id="categoryBreakdownText" styleClass="statistics-breakdown" />
+            </VBox>
+            
+            <!-- Expense Table -->
+            <VBox spacing="10" VBox.vgrow="ALWAYS">
+               <Label text="Expenses" styleClass="form-label" />
+               <TableView fx:id="expenseTable" styleClass="expense-table" VBox.vgrow="ALWAYS">
+                  <columns>
+                     <TableColumn fx:id="idColumn" text="ID" prefWidth="100" />
+                     <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="200" />
+                     <TableColumn fx:id="amountColumn" text="Amount" prefWidth="120" />
+                     <TableColumn fx:id="categoryColumn" text="Category" prefWidth="150" />
+                     <TableColumn fx:id="dateColumn" text="Date" prefWidth="120" />
+                  </columns>
+               </TableView>
+            </VBox>
+         </VBox>
+      </SplitPane>
+   </center>
+   
+   <bottom>
+      <HBox alignment="CENTER" styleClass="footer-box">
+         <padding>
+            <Insets top="15" bottom="15" left="30" right="30" />
+         </padding>
+         <Text text="Expense Categorization System v1.0 | Manage your finances with ease" styleClass="footer-text" />
+      </HBox>
+   </bottom>
+</BorderPane>
+
+
